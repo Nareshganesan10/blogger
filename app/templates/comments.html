@@ -1,0 +1,8 @@
+<form method='POST' action="{% url "post_blog" %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleInputEmail1">Blog</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" name="blog_content" aria-describedby="emailHelp" placeholder="Blog here">
+    </div>
+    <button type="submit" class="btn btn-primary">Post</button>
+  </form>

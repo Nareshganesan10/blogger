@@ -1,0 +1,31 @@
+<form method="POST" action="{% url "post_blog" %}">
+    {% csrf_token %}
+    <div class="form-group">
+      <label for="exampleInputEmail1">Blog</label>
+      <input type="text" class="form-control" id="exampleInputEmail1" name="blog_content" aria-describedby="emailHelp" placeholder="Blog here">
+    </div>
+    <button type="submit" class="btn btn-primary">Post</button>
+  </form>
+  
+  {% for blog in blog_list %}
+    <div class="blog-content">
+      {{ blog.blog_content }}
+    </div></br>
+  
+    <form action="{% url 'post_comment' blog.id %}" method="POST">
+        {% csrf_token %}
+      <div class="form-group">
+        <input type="text" class="form-control" name="comment" aria-describedby="emailHelp" placeholder="Comment this post">
+      </div>
+      <button type="submit" class="btn btn-primary">Comment</button>
+    </form>
+  
+    Comments:
+    {% for comment in blog.commentmodel_set.all %}
+      <div class="comment">
+        {{ comment.comment }}
+      </div></br>
+    {% endfor %}
+    <hr></br>
+  {% endfor %}
+  
